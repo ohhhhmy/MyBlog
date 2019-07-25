@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+ <div class = "container">
+
+    <h1> 환영합니다! </h1>
+
+    <Form method = "POST" action = "{% url 'signup' %}">
+   
+        {% csrf_token %}
+
+        Username:
+        <br>
+        <input type = "text" name = "username" value = "">
+        <br>
+        Password: 
+        <br>
+        <input type = "password" name = "password" value = "">
+        <br>
+        Confirm Password:
+        <br>
+        <input type = "password" name = "password2" value = "">
+        <br>
+        <br>
+        <input type = "submit" class = "btn btn-primary" value = "가입하기!!">
+    </form>
+
+ </div>
+{% endblock %}

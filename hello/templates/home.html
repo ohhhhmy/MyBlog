@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block contents %}
+
+<div class = "container">
+{% for blog in posts %}
+<div class="card border-dark mb-3" style="max-width: 50rem;">
+  <div class="card-header">{{blog.title}}
+</div>
+  <div class="card-body text-dark">
+    <h5 class="card-title">{{blog.pub_date}}</h5>
+    <p class="card-text">{{blog.summary}}<a href = "{% url 'detail' blog.id %}"> ...더보기</a></p>
+  </div>
+</div>
+{% endfor %}
+</div>
+
+
+<div class = "container">
+
+{% if posts.has_previous %}
+<a href = "?page=1"><button type="button" class="btn btn-light">First</button></a>
+<a href = "?page={{posts.previous_page_number}}"><button type="button" class="btn btn-light">Previous</button></a>
+{% endif %}
+
+<span><button type="button" class="btn btn-light">{{posts.number}}</button></span>
+<span><button type="button" class="btn btn-light">of</button></span>
+<span><button type="button" class="btn btn-light">{{posts.paginator.num_pages}}</button></span>
+
+{% if posts.has_next %}
+<a href = "?page={{posts.next_page_number}}"><button type="button" class="btn btn-light">Next</button></a>
+<a href = "?page={{posts.paginator.num_pages}}"><button type="button" class="btn btn-light">Last</button></a>
+{% endif %}
+
+</div>
+{% endblock %}
